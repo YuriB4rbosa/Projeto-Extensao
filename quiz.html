@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Cultura da Umbanda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-dark: #2C1810;
+            --text-light: #FFF8DC;
+            --background: #FAF0E6;
+            --card-bg: #FFFFFF;
+            --correct: #4CAF50;
+            --incorrect: #F44336;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, #e6d7c0 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Tela Inicial */
+        .start-screen {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .start-screen h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .start-screen p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Botões */
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-start {
+            font-size: 1.2rem;
+            padding: 18px 40px;
+        }
+
+        /* Tela do Quiz */
+        .quiz-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .question-counter {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: var(--background);
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 1.1rem;
+        }
+
+        .option:hover {
+            background: #f0e6d6;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--primary-color);
+            background: #f0e6d6;
+        }
+
+        .option.correct {
+            background: var(--correct);
+            color: white;
+            border-color: var(--correct);
+        }
+
+        .option.incorrect {
+            background: var(--incorrect);
+            color: white;
+            border-color: var(--incorrect);
+        }
+
+        /* Tela de Resultados */
+        .results-screen {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .results-header {
+            margin-bottom: 30px;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+        }
+
+        .score-message {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .results-details {
+            text-align: left;
+            background: var(--background);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .result-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-question {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .result-status {
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .result-correct {
+            background: var(--correct);
+            color: white;
+        }
+
+        .result-incorrect {
+            background: var(--incorrect);
+            color: white;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--background);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.1rem;
+            }
+            
+            .option {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .score-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Efeitos de Transição */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Quiz da Umbanda</h1>
+            <p>Teste seus conhecimentos sobre a cultura e história da Umbanda</p>
+        </header>
+
+        <!-- Tela Inicial -->
+        <section class="start-screen fade-in" id="startScreen">
+            <h2>Bem-vindo ao Quiz da Umbanda! 🙏</h2>
+            <p>Descubra o quanto você conhece sobre esta religião brasileira que mistura tradições africanas, indígenas e espiritismo.</p>
+            <p>O quiz contém 10 perguntas sobre história, entidades, rituais e cultura da Umbanda.</p>
+            <p>Boa sorte e que os guias te iluminem! ✨</p>
+            <button class="btn btn-start" onclick="startQuiz()">Iniciar Quiz</button>
+        </section>
+
+        <!-- Loading -->
+        <section class="loading" id="loadingScreen">
+            <div class="spinner"></div>
+            <p>Preparando o quiz...</p>
+        </section>
+
+        <!-- Tela do Quiz -->
+        <section class="quiz-container" id="quizScreen">
+            <div class="quiz-header">
+                <div class="question-counter" id="questionCounter">Pergunta 1/10</div>
+                <div class="score" id="score">Pontuação: 0</div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="question" id="question"></div>
+
+            <div class="options" id="options"></div>
+
+            <div style="text-align: center;">
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Próxima Pergunta</button>
+            </div>
+        </section>
+
+        <!-- Tela de Resultados -->
+        <section class="results-screen" id="resultsScreen">
+            <div class="results-header">
+                <h2>Quiz Concluído! 🎉</h2>
+                <p>Confira seu desempenho abaixo</p>
+            </div>
+
+            <div class="score-circle" id="finalScore">
+                0/10
+            </div>
+
+            <div class="score-message" id="scoreMessage"></div>
+
+            <div class="results-details" id="resultsDetails"></div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="restartQuiz()">Fazer Quiz Novamente</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Desenvolvido com respeito à cultura da Umbanda • Saravá! 🙏</p>
+        </footer>
+    </div>
+
+    <script>
+        // Perguntas do quiz
+        const questions = [
+            {
+                question: "Em que ano foi fundada a Umbanda?",
+                options: [
+                    "1908",
+                    "1920", 
+                    "1888",
+                    "1950"
+                ],
+                correct: 0,
+                explanation: "A Umbanda foi fundada em 15 de novembro de 1908 por Zélio Fernandino de Moraes em Niterói/RJ."
+            },
+            {
+                question: "Quem é considerado o fundador da Umbanda?",
+                options: [
+                    "Mãe Menininha",
+                    "Zélio Fernandino de Moraes",
+                    "Pai João",
+                    "Caboclo das Sete Encruzilhadas"
+                ],
+                correct: 1,
+                explanation: "Zélio Fernandino de Moraes, então com 17 anos, é reconhecido como o fundador da Umbanda."
+            },
+            {
+                question: "Qual entidade se manifestou pela primeira vez na fundação da Umbanda?",
+                options: [
+                    "Preto Velho",
+                    "Caboclo das Sete Encruzilhadas", 
+                    "Exu",
+                    "Ogum"
+                ],
+                correct: 1,
+                explanation: "O Caboclo das Sete Encruzilhadas foi a primeira entidade a se manifestar através de Zélio."
+            },
+            {
+                question: "O que significa a palavra 'Saravá'?",
+                options: [
+                    "Adeus",
+                    "Salve, que seja louvado", 
+                    "Obrigado",
+                    "Desculpe"
+                ],
+                correct: 1,
+                explanation: "Saravá é uma saudação que significa 'Salve! Que seja louvado!', usada como cumprimento."
+            },
+            {
+                question: "Qual destes NÃO é uma linha de trabalho na Umbanda?",
+                options: [
+                    "Linha das Almas",
+                    "Linha de Oxóssi", 
+                    "Linha de Iansã",
+                    "Linha de Shiva"
+                ],
+                correct: 3,
+                explanation: "Shiva é uma divindade do Hinduísmo, não faz parte das linhas de trabalho da Umbanda."
+            },
+            {
+                question: "O que são 'Pontos Cantados' na Umbanda?",
+                options: [
+                    "Locais sagrados",
+                    "Músicas ritualísticas", 
+                    "Pontos de energia",
+                    "Instrumentos musicais"
+                ],
+                correct: 1,
+                explanation: "Pontos Cantados são músicas e cantigas usadas nos rituais para invocar as entidades."
+            },
+            {
+                question: "Qual a cor associada a Oxalá?",
+                options: [
+                    "Vermelho",
+                    "Verde", 
+                    "Branco",
+                    "Azul"
+                ],
+                correct: 2,
+                explanation: "Oxalá, o orixá da criação e paz, é associado à cor branca, representando pureza e luz."
+            },
+            {
+                question: "O que representa o 'Congá' em um terreiro?",
+                options: [
+                    "O altar principal",
+                    "A área de dança", 
+                    "A cozinha ritual",
+                    "A entrada do terreiro"
+                ],
+                correct: 0,
+                explanation: "O Congá é o altar principal onde ficam as imagens dos santos, orixás e guias espirituais."
+            },
+            {
+                question: "Qual destas é uma característica da Umbanda?",
+                options: [
+                    "Uso da Bíblia como único livro sagrado",
+                    "Não acredita em vida após a morte", 
+                    "Prática da caridade como fundamento",
+                    "Adoração a um único deus exclusivo"
+                ],
+                correct: 2,
+                explanation: "A caridade é um dos pilares fundamentais da Umbanda, praticada através do atendimento espiritual gratuito."
+            },
+            {
+                question: "O que são 'Exus' na Umbanda?",
+                options: [
+                    "Demônios",
+                    "Guias que trabalham na esquerda", 
+                    "Anjos da guarda",
+                    "Orixás principais"
+                ],
+                correct: 1,
+                explanation: "Exus são guias que trabalham na 'esquerda', lidando com energias mais densas e proteção."
+            }
+        ];
+
+        // Variáveis do quiz
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        let quizStarted = false;
+
+        // Elementos DOM
+        const startScreen = document.getElementById('startScreen');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        const resultsScreen = document.getElementById('resultsScreen');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const nextBtn = document.getElementById('nextBtn');
+        const questionCounter = document.getElementById('questionCounter');
+        const scoreElement = document.getElementById('score');
+        const progressBar = document.getElementById('progressBar');
+        const finalScore = document.getElementById('finalScore');
+        const scoreMessage = document.getElementById('scoreMessage');
+        const resultsDetails = document.getElementById('resultsDetails');
+
+        // Iniciar quiz
+        function startQuiz() {
+            startScreen.style.display = 'none';
+            loadingScreen.style.display = 'block';
+            
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                quizScreen.style.display = 'block';
+                quizScreen.classList.add('fade-in');
+                loadQuestion();
+            }, 1500);
+        }
+
+        // Carregar pergunta
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionElement.textContent = question.question;
+            questionCounter.textContent = `Pergunta ${currentQuestion + 1}/${questions.length}`;
+            scoreElement.textContent = `Pontuação: ${score}`;
+            
+            // Atualizar barra de progresso
+            const progress = ((currentQuestion) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Limpar opções anteriores
+            optionsElement.innerHTML = '';
+            
+            // Adicionar novas opções
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(index);
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Resetar botão próximo
+            nextBtn.disabled = true;
+        }
+
+        // Selecionar opção
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            
+            // Remover seleção anterior
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Marcar opção selecionada
+            options[selectedIndex].classList.add('selected');
+            
+            // Salvar resposta do usuário
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Habilitar botão próximo
+            nextBtn.disabled = false;
+        }
+
+        // Próxima pergunta
+        function nextQuestion() {
+            const selectedOption = userAnswers[currentQuestion];
+            const question = questions[currentQuestion];
+            
+            // Verificar resposta
+            if (selectedOption === question.correct) {
+                score++;
+                scoreElement.textContent = `Pontuação: ${score}`;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Mostrar resultados
+        function showResults() {
+            quizScreen.style.display = 'none';
+            resultsScreen.style.display = 'block';
+            resultsScreen.classList.add('fade-in');
+            
+            // Calcular pontuação final
+            const percentage = (score / questions.length) * 100;
+            finalScore.textContent = `${score}/${questions.length}`;
+            finalScore.classList.add('pulse');
+            
+            // Mensagem baseada na pontuação
+            if (percentage >= 90) {
+                scoreMessage.textContent = "Excelente! Você é um verdadeiro conhecedor da Umbanda! 🙏";
+            } else if (percentage >= 70) {
+                scoreMessage.textContent = "Muito bom! Você conhece bem a cultura da Umbanda! ✨";
+            } else if (percentage >= 50) {
+                scoreMessage.textContent = "Bom! Você tem um conhecimento básico sobre a Umbanda! 🌟";
+            } else {
+                scoreMessage.textContent = "Continue estudando! A Umbanda tem muita sabedoria para oferecer! 📚";
+            }
+            
+            // Detalhes das respostas
+            resultsDetails.innerHTML = '';
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                
+                resultItem.innerHTML = `
+                    <div class="result-question">
+                        <strong>${index + 1}. ${question.question}</strong>
+                        <div style="font-size: 0.9rem; margin-top: 5px; color: #666;">
+                            Sua resposta: ${question.options[userAnswer]}
+                        </div>
+                        <div style="font-size: 0.9rem; margin-top: 5px;">
+                            ${question.explanation}
+                        </div>
+                    </div>
+                    <div class="result-status ${isCorrect ? 'result-correct' : 'result-incorrect'}">
+                        ${isCorrect ? '✓ Correta' : '✗ Incorreta'}
+                    </div>
+                `;
+                
+                resultsDetails.appendChild(resultItem);
+            });
+        }
+
+        // Reiniciar quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            
+            resultsScreen.style.display = 'none';
+            startScreen.style.display = 'block';
+            startScreen.classList.add('fade-in');
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efeitos visuais iniciais
+            startScreen.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>

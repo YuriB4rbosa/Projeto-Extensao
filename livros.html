@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros Infantis sobre Umbanda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4B0082;
+            --accent: #FFD700;
+            --light: #F0E6FF;
+            --dark: #2C003E;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light), #E6D4FF);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Livros */
+        .books-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--accent);
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .book-cover {
+            width: 150px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            margin: 0 auto 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .book-title {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .book-author {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .book-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Atividades */
+        .activities {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .activity-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 5px solid var(--primary);
+        }
+
+        .activity-card h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-card {
+                margin: 0 1rem;
+            }
+        }
+
+        /* Elementos decorativos */
+        .star {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 0 0.2rem;
+        }
+
+        .decoration {
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-content">
+            <h1>📚 Livros Infantis sobre Umbanda</h1>
+            <p>Descubra histórias encantadoras que ensinam sobre amor, respeito e diversidade religiosa</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <!-- Livros -->
+        <section class="books-section">
+            <h2 class="section-title">Nossa Coleção Especial</h2>
+            
+            <div class="decoration">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+            </div>
+
+            <div class="books-grid">
+                <!-- Livro 1 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #FF6B6B, #FF8E53);">
+                        O Segredo<br>do Terreiro
+                    </div>
+                    <h3 class="book-title">O Segredo do Terreiro</h3>
+                    <p class="book-author">Por Ana Silva</p>
+                    <p class="book-description">Lucas descobre um terreiro de Umbanda e aprende sobre caridade, respeito e as lindas histórias dos orixás.</p>
+                    <span class="age-badge">5-8 anos</span>
+                </div>
+
+                <!-- Livro 2 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #4ECDC4, #44A08D);">
+                        Iemanjá e<br>as Crianças
+                    </div>
+                    <h3 class="book-title">Iemanjá e as Crianças do Mar</h3>
+                    <p class="book-author">Por Carlos Santos</p>
+                    <p class="book-description">Uma aventura submarina onde as crianças aprendem sobre a rainha do mar e a importância de proteger a natureza.</p>
+                    <span class="age-badge">4-7 anos</span>
+                </div>
+
+                <!-- Livro 3 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #FFD93D, #FF9C3D);">
+                        O Presente<br>do Preto Velho
+                    </div>
+                    <h3 class="book-title">O Presente do Preto Velho</h3>
+                    <p class="book-author">Por Maria Oliveira</p>
+                    <p class="book-description">João recebe conselhos sábios de um Preto Velho que o ensina sobre paciência, sabedoria e amor ao próximo.</p>
+                    <span class="age-badge">6-9 anos</span>
+                </div>
+
+                <!-- Livro 4 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #6A0572, #AB83A1);">
+                        As Cores<br>dos Orixás
+                    </div>
+                    <h3 class="book-title">As Cores dos Orixás</h3>
+                    <p class="book-author">Por Pedro Costa</p>
+                    <p class="book-description">Um livro de cores que apresenta cada orixá através de suas cores preferidas e elementos da natureza.</p>
+                    <span class="age-badge">3-6 anos</span>
+                </div>
+
+                <!-- Livro 5 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #1A535C, #4ECDC4);">
+                        O Caboclo<br>e a Floresta
+                    </div>
+                    <h3 class="book-title">O Caboclo e a Floresta Encantada</h3>
+                    <p class="book-author">Por Fernanda Lima</p>
+                    <p class="book-description">Uma jornada pela mata onde as crianças aprendem sobre os caboclos e a importância de preservar as florestas.</p>
+                    <span class="age-badge">5-8 anos</span>
+                </div>
+
+                <!-- Livro 6 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(45deg, #FF165D, #FF9A8B);">
+                        A Festa<br>no Terreiro
+                    </div>
+                    <h3 class="book-title">A Festa no Terreiro</h3>
+                    <p class="book-author">Por Roberto Alves</p>
+                    <p class="book-description">Uma celebração cheia de música, dança e alegria onde todos são bem-vindos, independente de suas crenças.</p>
+                    <span class="age-badge">4-7 anos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Atividades -->
+        <section class="activities">
+            <h2 class="section-title">Atividades Divertidas</h2>
+            
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <h4>🎨 Colorir os Orixás</h4>
+                    <p>Desenhos para colorir com as cores de cada orixá</p>
+                </div>
+                
+                <div class="activity-card">
+                    <h4>🎵 Músicas Infantis</h4>
+                    <p>Pontos cantados adaptados para crianças</p>
+                </div>
+                
+                <div class="activity-card">
+                    <h4>📖 Contação de Histórias</h4>
+                    <p>Mitologia dos orixás em linguagem infantil</p>
+                </div>
+                
+                <div class="activity-card">
+                    <h4>🧩 Quebra-Cabeça</h4>
+                    <p>Jogos educativos sobre diversidade religiosa</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informações -->
+        <section style="text-align: center; padding: 2rem 0;">
+            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Por que ler esses livros?</h3>
+            <p style="max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                Esses livros infantis ensinam sobre respeito, diversidade e valores humanos através de histórias 
+                encantadoras que apresentam a Umbanda de forma positiva e educativa, promovendo a tolerância 
+                religiosa desde a infância.
+            </p>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container footer-content">
+            <p>📚 Livros Infantis sobre Umbanda</p>
+            <p>Educando para o respeito e diversidade religiosa</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                Site educativo - Todos os livros mencionados são fictícios para fins didáticos
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito interativo simples nos cards
+        document.querySelectorAll('.book-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Alerta educacional
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                alert('✨ Bem-vindo ao mundo dos livros infantis sobre Umbanda! Aqui as crianças aprendem sobre respeito e diversidade religiosa.');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

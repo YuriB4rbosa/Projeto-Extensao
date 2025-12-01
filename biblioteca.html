@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Autores da Umbanda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-dark: #2C1810;
+            --text-light: #FFF8DC;
+            --background: #FAF0E6;
+            --card-bg: #FFFFFF;
+            --header-bg: linear-gradient(135deg, #5D4037, #8B4513);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--header-bg);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--primary-color);
+            padding: 15px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-list a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.8), rgba(139, 69, 19, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%235D4037" width="1200" height="800"/><path fill="%238B4513" d="M0,0 Q600,400 1200,0 L1200,800 L0,800 Z"/></svg>');
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Filters */
+        .filters {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .filter-group select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+
+        .reset-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-left: auto;
+        }
+
+        .reset-btn:hover {
+            background: var(--primary-color);
+        }
+
+        /* Authors Grid */
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .author-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .author-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .author-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .author-period {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .author-bio {
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .author-works {
+            margin-bottom: 20px;
+        }
+
+        .works-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .works-list {
+            list-style: none;
+        }
+
+        .works-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .works-list li:before {
+            content: "📖";
+            font-size: 0.9rem;
+        }
+
+        .author-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #e6c200;
+        }
+
+        /* Featured Books */
+        .featured-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .books-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .book-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .book-author {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .book-year {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--header-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+
+            .nav-list {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .reset-btn {
+                margin-left: 0;
+            }
+
+            .authors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .author-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--background);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 25px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Biblioteca da Umbanda</h1>
+                        <p>Autores e Obras da Religião Afro-Brasileira</p>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar autores, livros ou temas..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#"><i class="fas fa-user-friends"></i> Autores</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Obras</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> História</a></li>
+                <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Biblioteca Virtual da Umbanda</h2>
+            <p>Descubra os principais autores, obras e pensadores que contribuíram para a história e desenvolvimento da Umbanda no Brasil</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filters -->
+        <section class="filters">
+            <div class="filter-group">
+                <label for="periodFilter"><i class="fas fa-calendar-alt"></i> Período:</label>
+                <select id="periodFilter">
+                    <option value="all">Todos os períodos</option>
+                    <option value="pioneiros">Pioneiros (1900-1950)</option>
+                    <option value="classicos">Clássicos (1950-1980)</option>
+                    <option value="contemporaneos">Contemporâneos (1980-atual)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="themeFilter"><i class="fas fa-tags"></i> Temática:</label>
+                <select id="themeFilter">
+                    <option value="all">Todas as temáticas</option>
+                    <option value="doutrina">Doutrina e Filosofia</option>
+                    <option value="rituais">Rituais e Práticas</option>
+                    <option value="historia">História</option>
+                    <option value="entidades">Entidades e Orixás</option>
+                </select>
+            </div>
+            <button class="reset-btn" id="resetFilters">
+                <i class="fas fa-redo"></i> Limpar Filtros
+            </button>
+        </section>
+
+        <!-- Authors Grid -->
+        <section class="authors-section">
+            <h2 class="section-title">Autores Destacados</h2>
+            <div class="authors-grid" id="authorsGrid">
+                <!-- Autor 1 -->
+                <div class="author-card" data-period="pioneiros" data-theme="doutrina">
+                    <div class="author-image">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">Zélio Fernandino de Moraes</h3>
+                        <div class="author-period">1871-1975 • Fundador</div>
+                        <p class="author-bio">Fundador da Umbanda. Recebeu as primeiras manifestações do Caboclo das Sete Encruzilhadas em 1908, estabelecendo os fundamentos da religião.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Principais Contribuições:</div>
+                            <ul class="works-list">
+                                <li>Fundamentos da Umbanda</li>
+                                <li>Rituais Iniciais</li>
+                                <li>Doutrina das Sete Linhas</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autor 2 -->
+                <div class="author-card" data-period="classicos" data-theme="doutrina">
+                    <div class="author-image">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">Diamantino Fernandes</h3>
+                        <div class="author-period">1912-1998 • Escritor e Pesquisador</div>
+                        <p class="author-bio">Um dos maiores divulgadores da Umbanda, autor de obras fundamentais que sistematizaram a doutrina e os rituais umbandistas.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Obras Principais:</div>
+                            <ul class="works-list">
+                                <li>Umbanda e Sua História</li>
+                                <li>Doutrina Secreta da Umbanda</li>
+                                <li>Os Orixás na Umbanda</li>
+                                <li>Rituais Umbandistas</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autor 3 -->
+                <div class="author-card" data-period="contemporaneos" data-theme="entidades">
+                    <div class="author-image">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">Rubens Saraceni</h3>
+                        <div class="author-period">1951-2015 • Escritor e Médium</div>
+                        <p class="author-bio">Importante autor contemporâneo que trouxe novas perspectivas sobre as entidades e a magia na Umbanda, com mais de 50 obras publicadas.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Obras Principais:</div>
+                            <ul class="works-list">
+                                <li>O Código de Umbanda</li>
+                                <li>As Sete Linhas de Umbanda</li>
+                                <li>Magia Divina</li>
+                                <li>Tratado Geral de Umbanda</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autor 4 -->
+                <div class="author-card" data-period="classicos" data-theme="rituais">
+                    <div class="author-image">
+                        <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">W.W. da Matta e Silva</h3>
+                        <div class="author-period">1917-1988 • Ocultista e Escritor</div>
+                        <p class="author-bio">Conhecido como Mestre Yapacani, fundador da Umbanda Esotérica. Suas obras abordam aspectos ocultos e filosóficos da religião.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Obras Principais:</div>
+                            <ul class="works-list">
+                                <li>Umbanda de Todos Nós</li>
+                                <li>Umbanda do Brasil</li>
+                                <li>Doutrina Secreta da Umbanda</li>
+                                <li>Lições de Umbanda e Quimbanda</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autor 5 -->
+                <div class="author-card" data-period="contemporaneos" data-theme="historia">
+                    <div class="author-image">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">Alexandre Cumino</h3>
+                        <div class="author-period">1971- • Sacerdote e Escritor</div>
+                        <p class="author-bio">Sacerdote umbandista e professor, conhecido por suas obras didáticas e por popularizar o ensino da Umbanda através de cursos e palestras.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Obras Principais:</div>
+                            <ul class="works-list">
+                                <li>História da Umbanda</li>
+                                <li>Umbanda Não é Religião de Negro</li>
+                                <li>O Livro Essencial da Umbanda</li>
+                                <li>Doutrina e Teologia de Umbanda</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autor 6 -->
+                <div class="author-card" data-period="pioneiros" data-theme="doutrina">
+                    <div class="author-image">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="author-content">
+                        <h3 class="author-name">Leal de Souza</h3>
+                        <div class="author-period">1885-1958 • Jornalista e Escritor</div>
+                        <p class="author-bio">Um dos primeiros intelectuais a estudar e escrever sobre a Umbanda, contribuindo para sua legitimação perante a sociedade brasileira.</p>
+                        <div class="author-works">
+                            <div class="works-title"><i class="fas fa-book"></i> Obras Principais:</div>
+                            <ul class="works-list">
+                                <li>O Espiritismo, a Magia e as Sete Linhas</li>
+                                <li>A Umbanda no Brasil</li>
+                                <li>No Mundo dos Espíritos</li>
+                            </ul>
+                        </div>
+                        <div class="author-actions">
+                            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Ler Obras</button>
+                            <button class="btn btn-secondary"><i class="fas fa-info-circle"></i> Biografia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Books -->
+        <section class="featured-section">
+            <h2 class="section-title">Obras em Destaque</h2>
+            <div class="books-carousel">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="book-title">Umbanda de Todos Nós</h3>
+                    <div class="book-author">W.W. da Matta e Silva</div>
+                    <div class="book-year">1956</div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="book-title">O Código de Umbanda</h3>
+                    <div class="book-author">Rubens Saraceni</div>
+                    <div class="book-year">2004</div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="book-title">História da Umbanda</h3>
+                    <div class="book-author">Alexandre Cumino</div>
+                    <div class="book-year">2010</div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="book-title">Doutrina Secreta da Umbanda</h3>
+                    <div class="book-author">Diamantino Fernandes</div>
+                    <div class="book-year">1978</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Biblioteca Virtual</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-home"></i> Página Inicial</a></li>
+                        <li><a href="#"><i class="fas fa-search"></i> Busca Avançada</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Ajuda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Acervo</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-user-friends"></i> Autores</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Obras Completas</a></li>
+                        <li><a href="#"><i class="fas fa-history"></i> História Oral</a></li>
+                        <li><a href="#"><i class="fas fa-images"></i> Galeria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-graduation-cap"></i> Cursos</a></li>
+                        <li><a href="#"><i class="fas fa-podcast"></i> Podcasts</a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> Vídeos</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Artigos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Biblioteca Virtual da Umbanda. Todos os direitos reservados. | Desenvolvido com respeito à cultura umbandista</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="authorModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalAuthorName">Nome do Autor</h2>
+                <p id="modalAuthorPeriod">Período • Temática</p>
+            </div>
+            <div class="modal-body">
+                <div id="modalAuthorContent">
+                    <!-- Conteúdo será carregado via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+    // Filtros e Busca
+    document.addEventListener('DOMContentLoaded', function() {
+        const periodFilter = document.getElementById('periodFilter');
+        const themeFilter = document.getElementById('themeFilter');
+        const searchInput = document.getElementById('searchInput');
+        const resetBtn = document.getElementById('resetFilters');
+        const authorCards = document.querySelectorAll('.author-card');
+        const modal = document.getElementById('authorModal');
+        const modalClose = document.getElementById('modalClose');
+
+        // Função para filtrar autores
+        function filterAuthors() {
+            const periodValue = periodFilter.value;
+            const themeValue = themeFilter.value;
+            const searchValue = searchInput.value.toLowerCase();
+
+            authorCards.forEach(card => {
+                const period = card.getAttribute('data-period');
+                const theme = card.getAttribute('data-theme');
+                const authorName = card.querySelector('.author-name').textContent.toLowerCase();
+                const authorBio = card.querySelector('.author-bio').textContent.toLowerCase();
+
+                const periodMatch = periodValue === 'all' || period === periodValue;
+                const themeMatch = themeValue === 'all' || theme === themeValue;
+                const searchMatch = searchValue === '' || 
+                    authorName.includes(searchValue) || 
+                    authorBio.includes(searchValue);
+
+                if (periodMatch && themeMatch && searchMatch) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Event Listeners para filtros
+        periodFilter.addEventListener('change', filterAuthors);
+        themeFilter.addEventListener('change', filterAuthors);
+        searchInput.addEventListener('input', filterAuthors);
+        
+        resetBtn.addEventListener('click', function() {
+            periodFilter.value = 'all';
+            themeFilter.value = 'all';
+            searchInput.value = '';
+            filterAuthors();
+        });
+
+        // Modal functionality
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.author-card');
+                const name = card.querySelector('.author-name').textContent;
+                const period = card.querySelector('.author-period').textContent;
+                const bio = card.querySelector('.author-bio').textContent;
+                
+                document.getElementById('modalAuthorName').textContent = name;
+                document.getElementById('modalAuthorPeriod').textContent = period;
+                
+                const worksList = card.querySelector('.works-list').innerHTML;
+                
+                document.getElementById('modalAuthorContent').innerHTML = `
+                    <p><strong>Biografia:</strong></p>
+                    <p>${bio}</p>
+                    <p><strong>Principais Obras:</strong></p>
+                    ${worksList}
+                    <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px;">
+                        <p><strong>Contribuição para a Umbanda:</strong></p>
+                        <p>Este autor teve papel fundamental no desenvolvimento e divulgação da Umbanda, contribuindo com obras que se tornaram referência para estudiosos e praticantes.</p>
+                    </div>
+                `;
+                
+                modal.style.display = 'flex';
+            });
+        });
+
+        // Fechar modal
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Efeitos de hover nos cards - CÓDIGO CORRIGIDO
+        authorCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            }); // Correção: ponto e vírgula adicionado
+        }); // Correção: forEach fechado corretamente
+
+        // Inicializar filtros
+        filterAuthors();
+    });
+</script>
+        

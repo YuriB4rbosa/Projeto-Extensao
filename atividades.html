@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades - Cultura Umbandista</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4B0082;
+            --secondary: #8A2BE2;
+            --accent: #FFD700;
+            --light: #F5F5F5;
+            --dark: #2C003E;
+            --text: #2C2C2C;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Seções */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            text-align: center;
+        }
+        
+        /* Cards de atividades */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .activity-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .activity-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-card h3::before {
+            content: "⚜";
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        
+        .activity-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .activity-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Materiais */
+        .materials {
+            background-color: #f9f9f9;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .material-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .material-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Jogos interativos */
+        .interactive-section {
+            background: linear-gradient(135deg, #e8f5e8, #e8e8f5);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-container {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.8rem;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Linhas e Orixás */
+        .orixas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .orixa-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .orixa-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .orixa-color {
+            height: 20px;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Atividades sobre Cultura Umbandista</h1>
+            <p>Recursos educativos e atividades práticas para conhecer e valorizar a Umbanda, religião brasileira</p>
+        </div>
+    </header>
+
+    <!-- Navegação -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#atividades">Atividades</a></li>
+                <li><a href="#orixas">Orixás</a></li>
+                <li><a href="#musicas">Músicas</a></li>
+                <li><a href="#simbolos">Símbolos</a></li>
+                <li><a href="#jogos">Jogos</a></li>
+                <li><a href="#materiais">Materiais</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <!-- Atividades -->
+        <section id="atividades">
+            <h2 class="section-title">Atividades Educativas</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>Mapa do Sincretismo Religioso</h3>
+                    <p><strong>Objetivo:</strong> Compreender as influências africanas, indígenas e católicas na Umbanda</p>
+                    <p><strong>Materiais:</strong> Mapas mentais, imagens de santos católicos e orixás, cola, tesoura</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Pesquisar os sincretismos mais comuns (Exu-Santo Antônio, Iemanjá-Nossa Senhora)</li>
+                        <li>Criar um diagrama conectando orixás aos santos católicos</li>
+                        <li>Incluir elementos indígenas (caboclos) e africanos</li>
+                        <li>Discutir o contexto histórico do sincretismo</li>
+                    </ul>
+                    <p><strong>Avaliação:</strong> Compreensão das diferentes influências culturais</p>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Linha do Tempo da Umbanda</h3>
+                    <p><strong>Objetivo:</strong> Conhecer a história e desenvolvimento da Umbanda no Brasil</p>
+                    <p><strong>Materiais:</strong> Cartolina, canetas coloridas, pesquisas históricas</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>1908: Fundação por Zélio de Moraes</li>
+                        <li>Década de 1920: Primeiras tendas</li>
+                        <li>1939: Primeiro Congresso de Umbanda</li>
+                        <li>Décadas de 1950-60: Expansão nacional</li>
+                        <li>Atualidade: Diversificação e consolidação</li>
+                    </ul>
+                    <p><strong>Avaliação:</strong> Precisão histórica e organização da linha do tempo</p>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Oficina de Pontos Cantados</h3>
+                    <p><strong>Objetivo:</strong> Conhecer e valorizar a musicalidade na Umbanda</p>
+                    <p><strong>Materiais:</strong> Letras de pontos cantados, instrumentos musicais simples</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Apresentar pontos para diferentes orixás e entidades</li>
+                        <li>Estudar a estrutura musical dos pontos</li>
+                        <li>Praticar o canto coletivo</li>
+                        <li>Criar pequenas coreografias para os pontos</li>
+                    </ul>
+                    <p><strong>Avaliação:</strong> Participação e compreensão da função dos pontos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Orixás -->
+        <section id="orixas" class="materials">
+            <h2 class="section-title">Conhecendo os Orixás</h2>
+            
+            <div class="orixas-grid">
+                <div class="orixa-card">
+                    <h4>Oxalá</h4>
+                    <div class="orixa-color" style="background-color: white;"></div>
+                    <p>Paz, criação, pureza</p>
+                    <p><small>Dia: Sexta-feira</small></p>
+                </div>
+                
+                <div class="orixa-card">
+                    <h4>Iemanjá</h4>
+                    <div class="orixa-color" style="background-color: lightblue;"></div>
+                    <p>Maternidade, mar, amor</p>
+                    <p><small>Dia: Sábado</small></p>
+                </div>
+                
+                <div class="orixa-card">
+                    <h4>Oxossi</h4>
+                    <div class="orixa-color" style="background-color: green;"></div>
+                    <p>Caça, floresta, conhecimento</p>
+                    <p><small>Dia: Quinta-feira</small></p>
+                </div>
+                
+                <div class="orixa-card">
+                    <h4>Xangô</h4>
+                    <div class="orixa-color" style="background-color: brown;"></div>
+                    <p>Justiça, raios, poder</p>
+                    <p><small>Dia: Quarta-feira</small></p>
+                </div>
+                
+                <div class="orixa-card">
+                    <h4>Ogum</h4>
+                    <div class="orixa-color" style="background-color: darkred;"></div>
+                    <p>Guerra, ferramentas, proteção</p>
+                    <p><small>Dia: Terça-feira</small></p>
+                </div>
+                
+                <div class="orixa-card">
+                    <h4>Oxum</h4>
+                    <div class="orixa-color" style="background-color: gold;"></div>
+                    <p>Amor, rios, riqueza</p>
+                    <p><small>Dia: Sábado</small></p>
+                </div>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 2rem;">
+                <h3>Atividade: Cartões dos Orixás</h3>
+                <p><strong>Objetivo:</strong> Identificar e caracterizar os principais orixás da Umbanda</p>
+                <p><strong>Materiais:</strong> Cartolina, canetas coloridas, imagens dos orixás</p>
+                <p><strong>Desenvolvimento:</strong></p>
+                <ul>
+                    <li>Criar cartões para cada orixá com suas características</li>
+                    <li>Incluir cores, símbolos, elementos da natureza</li>
+                    <li>Adicionar dias da semana e saudações</li>
+                    <li>Jogo de memória com os cartões criados</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Músicas -->
+        <section id="musicas">
+            <h2 class="section-title">Atividades Musicais</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>Oficina de Atabaques</h3>
+                    <p><strong>Objetivo:</strong> Conhecer os instrumentos musicais da Umbanda</p>
+                    <p><strong>Materiais:</strong> Atabaques (ou substitutos), agogô, pandeiro</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Apresentar os três atabaques: Rum, Rumpi e Lé</li>
+                        <li>Demonstrar toques básicos para diferentes orixás</li>
+                        <li>Praticar ritmos simples em grupo</li>
+                        <li>Integrar canto e percussão</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Composição Coletiva</h3>
+                    <p><strong>Objetivo:</strong> Criar pontos cantados inspirados na tradição umbandista</p>
+                    <p><strong>Materiais:</strong> Papel, canetas, instrumentos musicais</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Estudar a estrutura poética dos pontos</li>
+                        <li>Escolher um orixá ou entidade para homenagear</li>
+                        <li>Criar letra coletivamente</li>
+                        <li>Desenvolver melodia simples</li>
+                        <li>Apresentar a composição para o grupo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Símbolos -->
+        <section id="simbolos" class="materials">
+            <h2 class="section-title">Oficina de Símbolos e Significados</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>Construção de Altar Didático</h3>
+                    <p><strong>Objetivo:</strong> Compreender a simbologia e organização de um altar umbandista</p>
+                    <p><strong>Materiais:</strong> Tecidos coloridos, imagens, velas, flores, pedras naturais</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Pesquisar os elementos de um altar tradicional</li>
+                        <li>Organizar por linhas (Oxalá, Iemanjá, etc.)</li>
+                        <li>Explicar o significado de cada elemento</li>
+                        <li>Discutir respeito e cuidado com o sagrado</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Desenhos de Pontos Riscados</h3>
+                    <p><strong>Objetivo:</strong> Conhecer a simbologia gráfica da Umbanda</p>
+                    <p><strong>Materiais:</strong> Giz colorido, papel craft, livros com símbolos</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Apresentar pontos riscados de diferentes entidades</li>
+                        <li>Estudar o significado de símbolos e linhas</li>
+                        <li>Praticar a criação de pontos riscados simples</li>
+                        <li>Explicar a função ritualística dos desenhos</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Confecção de Guias</h3>
+                    <p><strong>Objetivo:</strong> Conhecer o significado das guias (colares) na Umbanda</p>
+                    <p><strong>Materiais:</strong> Contas coloridas, linha, exemplos de guias</p>
+                    <p><strong>Desenvolvimento:</strong></p>
+                    <ul>
+                        <li>Estudar as cores das guias para cada orixá</li>
+                        <li>Praticar técnicas simples de confecção</li>
+                        <li>Discutir o significado espiritual das guias</li>
+                        <li>Respeitar o caráter sagrado dos objetos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jogos -->
+        <section id="jogos">
+            <h2 class="section-title">Jogos Educativos</h2>
+            
+            <div class="interactive-section">
+                <h3>Quiz: Conhecendo a Umbanda</h3>
+                <div class="quiz-container">
+                    <div class="quiz-question">
+                        <p><strong>1. Em que ano foi fundada a Umbanda?</strong></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option">a) 1888</div>
+                            <div class="quiz-option">b) 1908</div>
+                            <div class="quiz-option">c) 1928</div>
+                            <div class="quiz-option">d) 1948</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p><strong>2. Qual entidade se manifestou através de Zélio de Moraes?</strong></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option">a) Preto Velho</div>
+                            <div class="quiz-option">b) Caboclo das Sete Encruzilhadas</div>
+                            <div class="quiz-option">c) Exu Tranca-Ruas</div>
+                            <div class="quiz-option">d) Iemanjá</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p><strong>3. Qual é a principal virtude pregada na Umbanda?</strong></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option">a) Caridade</div>
+                            <div class="quiz-option">b) Obediência</div>
+                            <div class="quiz-option">c) Silêncio</div>
+                            <div class="quiz-option">d) Isolamento</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn">Verificar Respostas</button>
+                </div>
+            </div>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>Jogo da Memória Umbandista</h3>
+                    <p><strong>Objetivo:</strong> Associar orixás com seus símbolos e cores</p>
+                    <p><strong>Materiais:</strong> Cartas com imagens de orixás, símbolos, cores</p>
+                    <p><strong>Como jogar:</strong></p>
+                    <ul>
+                        <li>Criar pares de cartas (orixá + seu símbolo/cor)</li>
+                        <li>Virar cartas e encontrar os pares corretos</li>
+                        <li>Ao formar par, explicar o significado</li>
+                        <li>Vence quem formar mais pares</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-card">
+                    <h3>Caça-Palavras Umbandista</h3>
+                    <p><strong>Objetivo:</strong> Familiarizar-se com o vocabulário da Umbanda</p>
+                    <p><strong>Materiais:</strong> Modelos de caça-palavras, lápis</p>
+                    <p><strong>Palavras para incluir:</strong></p>
+                    <ul>
+                        <li>Umbanda</li>
+                        <li>Orixá</li>
+                        <li>Caboclo</li>
+                        <li>PretoVelho</li>
+                        <li>Caridade</li>
+                        <li>Terreiro</li>
+                        <li>Atabaque</li>
+                        <li>Guia</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Materiais -->
+        <section id="materiais" class="materials">
+            <h2 class="section-title">Materiais de Apoio</h2>
+            
+            <div class="materials-grid">
+                <div class="material-item">
+                    <h4>Textos para Professores</h4>
+                    <ul>
+                        <li>Guia básico sobre Umbanda</li>
+                        <li>História da fundação e expansão</li>
+                        <li>Princípios doutrinários</li>
+                        <li>Glossário de termos umbandistas</li>
+                    </ul>
+                </div>
+                
+                <div class="material-item">
+                    <h4>Recursos Visuais</h4>
+                    <ul>
+                        <li>Imagens dos orixás e entidades</li>
+                        <li>Fotos de terreiros e rituais</li>
+                        <li>Vídeos educativos sobre Umbanda</li>
+                        <li>Mapa de sincretismo religioso</li>
+                    </ul>
+                </div>
+                
+                <div class="material-item">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li>Federações Umbandistas</li>
+                        <li>Museu virtual da Umbanda</li>
+                        <li>Canais com pontos cantados</li>
+                        <li>Entrevistas com sacerdotes</li>
+                    </ul>
+                </div>
+                
+                <div class="material-item">
+                    <h4>Literatura Indicada</h4>
+                    <ul>
+                        <li>"O que é a Umbanda?" - Maria Helena Villac</li>
+                        <li>"Umbanda: A Proto-Síntese Cósmica"</li>
+                        <li>"Na Ponta da Faca" - Alexandre Cumino</li>
+                        <li>Literatura de Umbanda Esotérica</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>Atividades sobre Cultura Umbandista | Educação para Diversidade Religiosa</p>
+            <p>Recurso educacional para combate à intolerância e valorização da cultura brasileira</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulação de quiz interativo
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove seleção anterior
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.backgroundColor = '#f5f5f5';
+                });
+                
+                // Marca opção selecionada
+                this.style.backgroundColor = '#d4edda';
+            });
+        });
+        
+        // Botão de verificar respostas
+        document.querySelector('.btn').addEventListener('click', function() {
+            alert('Respostas corretas:\n\n1. b) 1908\n2. b) Caboclo das Sete Encruzilhadas\n3. a) Caridade\n\nA Umbanda foi fundada em 1908 através do Caboclo das Sete Encruzilhadas, e tem como principal virtude a caridade!');
+        });
+    </script>
+</body>
+</html>

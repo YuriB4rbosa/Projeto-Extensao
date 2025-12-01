@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Aula - História da Umbanda</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4B0082;
+            --secondary: #8A2BE2;
+            --accent: #FFD700;
+            --light: #F5F5F5;
+            --dark: #2C003E;
+            --text: #2C2C2C;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Seções */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        
+        /* Listas */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* Elementos especiais */
+        .highlight {
+            background-color: #fff8e1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 1.5rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Recursos */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .resource-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Plano de Aula - História da Umbanda</h1>
+            <p>Um recurso educacional para o ensino da história e fundamentos da Umbanda, religião brasileira de matriz africana</p>
+        </div>
+    </header>
+
+    <!-- Navegação -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#conteudos">Conteúdos</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#fundamentos">Fundamentos</a></li>
+                <li><a href="#metodologia">Metodologia</a></li>
+                <li><a href="#avaliacao">Avaliação</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <!-- Objetivos -->
+        <section id="objetivos">
+            <h2 class="section-title">Objetivos de Aprendizagem</h2>
+            
+            <div class="card">
+                <h3>Objetivos Gerais</h3>
+                <ul>
+                    <li>Compreender a Umbanda como religião brasileira e seu contexto histórico</li>
+                    <li>Reconhecer a Umbanda como síntese cultural afro-indígena-brasileira</li>
+                    <li>Identificar os principais elementos doutrinários e rituais da Umbanda</li>
+                    <li>Valorizar a diversidade religiosa brasileira e combater a intolerância</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Objetivos Específicos</h3>
+                <ul>
+                    <li>Conhecer a história do surgimento da Umbanda no Brasil</li>
+                    <li>Identificar as influências africanas, indígenas e europeias na Umbanda</li>
+                    <li>Reconhecer as entidades e orixás da Umbanda</li>
+                    <li>Compreender os conceitos de caridade e desenvolvimento espiritual</li>
+                    <li>Analisar a contribuição da Umbanda para a cultura brasileira</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Importância do Tema</h3>
+                <p>O estudo da Umbanda é fundamental para compreender a formação da identidade cultural brasileira, combater a intolerância religiosa e valorizar as contribuições das matrizes africanas e indígenas para nossa sociedade.</p>
+            </div>
+        </section>
+
+        <!-- Conteúdos -->
+        <section id="conteudos">
+            <h2 class="section-title">Conteúdos Programáticos</h2>
+            
+            <div class="card">
+                <h3>Módulo 1: Origens e História da Umbanda</h3>
+                <ul>
+                    <li>Contexto histórico do Brasil no início do século XX</li>
+                    <li>Zélio de Moraes e a fundação da Umbanda</li>
+                    <li>As sete linhas de Umbanda</li>
+                    <li>Expansão pelo território nacional</li>
+                    <li>Perseguições e resistências históricas</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Módulo 2: Fundamentos Doutrinários</h3>
+                <ul>
+                    <li>Conceito de caridade e fraternidade</li>
+                    <li>Os Orixás na Umbanda</li>
+                    <li>Hierarquia espiritual: Orixás, Guias e Protetores</li>
+                    <li>Mediunidade e desenvolvimento espiritual</li>
+                    <li>Princípios éticos e morais</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Módulo 3: Sincretismo Religioso</h3>
+                <ul>
+                    <li>Influências das religiões africanas</li>
+                    <li>Elementos do catolicismo popular</li>
+                    <li>Contribuições indígenas (caboclos)</li>
+                    <li>Influência do espiritismo kardecista</li>
+                    <li>O sincretismo como estratégia de resistência</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Módulo 4: Práticas e Rituais</h3>
+                <ul>
+                    <li>O terreiro de Umbanda e sua organização</li>
+                    <li>Atabaques, pontos cantados e danças</li>
+                    <li>Roupas e símbolos ritualísticos</li>
+                    <li>Oferendas e trabalhos espirituais</li>
+                    <li>Datas comemorativas e festas</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- História -->
+        <section id="historia">
+            <h2 class="section-title">Linha do Tempo Histórica</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Séculos XVI-XIX</h3>
+                        <p>Chegada dos africanos escravizados e desenvolvimento das religiões de matriz africana no Brasil, em meio à perseguição e sincretismo com o catolicismo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1908</h3>
+                        <p>Fundação da Umbanda por Zélio de Moraes em Neves, Niterói (RJ), através da incorporação do Caboclo das Sete Encruzilhadas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Década de 1920</h3>
+                        <p>Primeira tenda fundada: Tenda Espírita Nossa Senhora da Piedade. Expansão inicial da Umbanda no Rio de Janeiro.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1939</h3>
+                        <p>Primeiro Congresso de Umbanda no Brasil, organizado por Leal de Souza, buscando organizar e unificar a doutrina.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1941</h3>
+                        <p>Fundamento do Primeiro Congresso Brasileiro do Espiritismo de Umbanda, marco na institucionalização da religião.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Décadas de 1950-60</h3>
+                        <p>Expansão nacional da Umbanda, com surgimento de federações estaduais e diversificação de linhas doutrinárias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fundamentos -->
+        <section id="fundamentos">
+            <h2 class="section-title">Fundamentos da Umbanda</h2>
+            
+            <div class="card">
+                <h3>As Sete Linhas de Umbanda</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Linha</th>
+                            <th>Orixá Regente</th>
+                            <th>Cores</th>
+                            <th>Atuação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Linha de Oxalá</td>
+                            <td>Oxalá</td>
+                            <td>Branco</td>
+                            <td>Paz, harmonia e criação</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Iemanjá</td>
+                            <td>Iemanjá</td>
+                            <td>Azul e Branco</td>
+                            <td>Amor materno, fertilidade</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Oxossi</td>
+                            <td>Oxossi</td>
+                            <td>Verde</td>
+                            <td>Conhecimento, fartura</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Xangô</td>
+                            <td>Xangô</td>
+                            <td>Marrom e Vermelho</td>
+                            <td>Justiça, equilíbrio</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Ogum</td>
+                            <td>Ogum</td>
+                            <td>Vermelho e Verde</td>
+                            <td>Guerra, proteção</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Oxum</td>
+                            <td>Oxum</td>
+                            <td>Amarelo e Dourado</td>
+                            <td>Amor, riqueza</td>
+                        </tr>
+                        <tr>
+                            <td>Linha de Iansã</td>
+                            <td>Iansã</td>
+                            <td>Amarelo e Vermelho</td>
+                            <td>Mudanças, ventos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h3>Principais Entidades</h3>
+                <ul>
+                    <li><strong>Caboclos:</strong> Espíritos de indígenas, representam sabedoria e conexão com a natureza</li>
+                    <li><strong>Pretos Velhos:</strong> Espíritos de ancestrais africanos, representam paciência e sabedoria</li>
+                    <li><strong>Exus:</strong> Guardiões, mensageiros entre os planos espiritual e material</li>
+                    <li><strong>Crianças (Erês):</strong> Espíritos infantis, representam pureza e alegria</li>
+                    <li><strong>Baianos:</strong> Espíritos do povo brasileiro, representam alegria e descontração</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Metodologia -->
+        <section id="metodologia">
+            <h2 class="section-title">Metodologia de Ensino</h2>
+            
+            <div class="card">
+                <h3>Abordagens Pedagógicas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estratégia</th>
+                            <th>Descrição</th>
+                            <th>Recursos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aula Expositiva Dialogada</td>
+                            <td>Apresentação do conteúdo com debate sobre diversidade religiosa</td>
+                            <td>Datashow, textos, imagens</td>
+                        </tr>
+                        <tr>
+                            <td>Estudo de Caso</td>
+                            <td>Análise da fundação da Umbanda e sua trajetória histórica</td>
+                            <td>Documentos históricos, depoimentos</td>
+                        </tr>
+                        <tr>
+                            <td>Aulas Práticas</td>
+                            <td>Oficinas sobre símbolos, músicas e elementos culturais</td>
+                            <td>Instrumentos musicais, materiais artísticos</td>
+                        </tr>
+                        <tr>
+                            <td>Pesquisa em Grupo</td>
+                            <td>Investigação sobre diferentes terreiros e suas particularidades</td>
+                            <td>Internet, entrevistas, visitas virtuais</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h3>Cronograma Sugerido (6 aulas)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aula</th>
+                            <th>Tema</th>
+                            <th>Atividade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Introdução: O que é a Umbanda?</td>
+                            <td>Mapa conceitual e discussão inicial</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>História e Fundação</td>
+                            <td>Linha do tempo e estudo de Zélio de Moraes</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Sincretismo Religioso</td>
+                            <td>Análise comparativa com outras religiões</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Orixás e Entidades</td>
+                            <td>Seminários sobre as sete linhas</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Rituais e Práticas</td>
+                            <td>Oficina de símbolos e músicas</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Umbanda na Atualidade</td>
+                            <td>Debate sobre intolerância religiosa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Avaliação -->
+        <section id="avaliacao">
+            <h2 class="section-title">Avaliação de Aprendizagem</h2>
+            
+            <div class="card">
+                <h3>Instrumentos Avaliativos</h3>
+                <ul>
+                    <li><strong>Participação em sala:</strong> Envolvimento nas discussões sobre diversidade religiosa</li>
+                    <li><strong>Trabalhos em grupo:</strong> Pesquisas e seminários sobre aspectos específicos da Umbanda</li>
+                    <li><strong>Produção textual:</strong> Redações sobre a importância do respeito à diversidade religiosa</li>
+                    <li><strong>Projeto final:</strong> Elaboração de material educativo sobre a Umbanda</li>
+                    <li><strong>Avaliação escrita:</strong> Questões sobre história e fundamentos da religião</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Critérios de Avaliação</h3>
+                <ul>
+                    <li>Compreensão da Umbanda como religião brasileira</li>
+                    <li>Reconhecimento do sincretismo religioso como elemento cultural</li>
+                    <li>Capacidade de relacionar história da Umbanda com contexto social</li>
+                    <li>Postura respeitosa frente à diversidade religiosa</li>
+                    <li>Combate ao preconceito e intolerância religiosa</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Recursos -->
+        <section id="recursos">
+            <h2 class="section-title">Recursos Didáticos</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <h4>Textos e Livros</h4>
+                    <ul>
+                        <li>"O que é a Umbanda?" - Maria Helena Villac</li>
+                        <li>"Umbanda: A Proto-Síntese Cósmica" - F. Rivas Neto</li>
+                        <li>"Na Ponta da Faca" - Alexandre Cumino</li>
+                        <li>"Umbanda de Todos Nós" - W.W. da Matta e Silva</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Audiovisuais</h4>
+                    <ul>
+                        <li>Documentário "Umbanda no Brasil"</li>
+                        <li>Entrevistas com sacerdotes umbandistas</li>
+                        <li>Pontos cantados de diferentes nações</li>
+                        <li>Imagens de rituais e símbolos</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Materiais Práticos</h4>
+                    <ul>
+                        <li>Mapa da expansão da Umbanda no Brasil</li>
+                        <li>Linha do tempo histórica</li>
+                        <li>Imagens de orixás e suas cores</li>
+                        <li>Instrumentos musicais (atabaques, agogô)</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Sites e Recursos Online</h4>
+                    <ul>
+                        <li>Federações Umbandistas estaduais</li>
+                        <li>Acervo digital sobre religiões afro-brasileiras</li>
+                        <li>Museu virtual da Umbanda</li>
+                        <li>Canais educativos no YouTube</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>Plano de Aula - História da Umbanda | Educação para Diversidade Religiosa</p>
+            <p>Recurso educacional para combate à intolerância e valorização da cultura brasileira</p>
+        </div>
+    </footer>
+</body>
+</html>
